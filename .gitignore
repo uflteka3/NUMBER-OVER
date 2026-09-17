@@ -1,0 +1,44 @@
+# Dépendances
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+next-env.d.ts
+
+# Environnement — JAMAIS versionné
+.env
+.env.*
+!.env.example
+
+# Secrets et certificats
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Supabase (local)
+supabase/.branches/
+supabase/.temp/
+
+# Journaux et caches
+*.log
+npm-debug.log*
+.eslintcache
+*.tsbuildinfo
+
+# Tests et couverture
+coverage/
+playwright-report/
+test-results/
+
+# Système et éditeurs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Déploiement
+.vercel/
