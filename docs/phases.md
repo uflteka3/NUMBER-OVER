@@ -3,8 +3,8 @@
 | # | Phase | Statut |
 |---|---|---|
 | 1 | Analyse et préparation | ✅ Validée |
-| 2 | Architecture et configuration | 🔄 En cours |
-| 3 | Base de données Supabase (migrations, RLS) | ⏳ Attente d'autorisation |
+| 2 | Architecture et configuration | ✅ Validée |
+| 3 | Base de données Supabase (migrations, RLS) | ✅ Écrite et testée localement — application distante en attente |
 | 4 | Authentification et rôles | ⏳ |
 | 5 | Intégration Twilio — lecture et synchronisation | ⏳ |
 | 6 | Design système et pages publiques | ⏳ |
