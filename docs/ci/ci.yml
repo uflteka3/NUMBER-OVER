@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Lint · Typecheck · Secrets · Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Aucun secret n'est requis pour construire le projet en phase 2.
+      # Les secrets réels ne seront jamais placés ici, mais dans GitHub Secrets.
+      NEXT_TELEMETRY_DISABLED: 1
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Installation de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installation des dépendances
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Vérification des secrets
+        run: npm run check:secrets
+
+      - name: Audit des dépendances (vulnérabilités élevées et critiques)
+        run: npm audit --audit-level=high
+
+      - name: Build de production
+        run: npm run build
